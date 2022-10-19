@@ -1,0 +1,48 @@
+*res_% = risultati dei 4 momenti (kt, st, sk, mn)
+*%_prop = risultati dei 4 momenti (kt, st, sk, mn)
+
+dir:
+    - data:
+        [TS]
+        - name_original: file grezzo di input
+
+        - original: file ordinato con i buchi dei prezzi
+        - predicted: file delle sole predizioni fatte dalla rete
+        - filled: file riempito (original + predicted)
+        - log_ret: file delle differenze dei logaritmi
+
+        - trend: trend
+        - seas: stagionalità
+        - residual: serie log_ret destagionalizzata
+
+        - res_observed: della serie osservata
+        - res_filled: della serie riempita
+        - res_log_observed: della serie logaritmica osservata
+        - res_log_filled: della serie logaritmica riempita
+        - res_filled_des: della serie logaritmica riempita destagionalizzata (residual)
+
+        - cluster.json: parametri ottimi clusterizzazione + results
+        - cluster_series: serie degli elemtni nel cluster
+        - res_cluster: della serie clusterizzata (cluster_series)
+        - info_cluster: recap delle info della clusterizzazione
+
+        [FUT]
+        - original_log: log dei prezzi
+        - soft_refilled: predizioni step by step non utilizzando le predizioni della rete
+        - s_diff: differenza tra l'osservata e quella ricostruita (original - soft_refilled)
+
+        - trajectory(0, 1, 2): traiettoria generata
+        - log_ret(0, 1, 2): differenze dei logaritmi delle traiettorie
+        - probability: insieme delle proabilità delle predizioni della rete
+
+        - original_prop: della serie osservata
+        - refilled_prop: della serie ricostruita dalla rete
+
+        [GAU]
+        - log_cluster: file clusterizzato con valori e 0 dove il valore non sia nel cluster
+        - cluster_rebuild_prices: file con n osservazioni ricostruito dal cluster
+
+    - model:
+        - [TS]: fill
+        - [FUT]: replace
+        - [GAU]: cluster
